@@ -36,7 +36,7 @@ public class PasswordTableModel implements TableModel {
             column = "Пароль";
         }
         if (columnIndex == 2){
-            column = "E=mail";
+            column = "E-mail";
         }
         return column;
 
