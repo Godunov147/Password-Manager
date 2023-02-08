@@ -1,9 +1,11 @@
 package org.example;
 
+import org.example.controller.PasswordsController;
 import org.example.model.Password;
 import org.example.model.PasswordTableModel;
 
 import javax.swing.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MainView {
@@ -23,6 +25,12 @@ public class MainView {
 
         addButton.addActionListener(e -> {
             Main.startEditPassword();
+            PasswordsController passwordsController = new PasswordsController();
+            try {
+                passwordsController.savePassword(null);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
     }
