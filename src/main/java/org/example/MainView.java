@@ -32,6 +32,24 @@ public class MainView {
                 throw new RuntimeException(ex);
             }
         });
+        editButton.addActionListener(e -> {
+            Main.startChangePassword();
+            PasswordsController passwordsController = new PasswordsController();
+            try {
+                passwordsController.savePassword(null);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        deleteButton.addActionListener(e -> {
+            Main.startDeletePassword();
+            PasswordsController passwordsController = new PasswordsController();
+            try {
+                passwordsController.savePassword(null);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
     }
 }

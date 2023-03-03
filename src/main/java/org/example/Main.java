@@ -21,8 +21,24 @@ public class Main {
         mainFrame.setVisible(true);
     }
     public static void startEditPassword(){
-        addEditPassword = new JFrame("");
+        addEditPassword = new JFrame("Создать пароль");
         addEditPassword.setContentPane(new AddEditPassword().addEditPanel);
+        addEditPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        addEditPassword.setSize(640, 480);
+        addEditPassword.setLocationRelativeTo(null);
+        addEditPassword.setVisible(true);
+    }
+    public static void startChangePassword() {
+        addEditPassword = new JFrame("Изменить пароль");
+        addEditPassword.setContentPane(new ChangePassword().changePasswordPanel);
+        addEditPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        addEditPassword.setSize(640, 480);
+        addEditPassword.setLocationRelativeTo(null);
+        addEditPassword.setVisible(true);
+    }
+    public static void startDeletePassword() {
+        addEditPassword = new JFrame("Удалить пароль");
+        addEditPassword.setContentPane(new DeletePassword().deletePasswordPanel);
         addEditPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         addEditPassword.setSize(640, 480);
         addEditPassword.setLocationRelativeTo(null);
