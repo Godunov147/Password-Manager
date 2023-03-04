@@ -23,7 +23,8 @@ public class PasswordsController {
     }
 
     public void savePassword(Password password) throws SQLException {
-        String query = "INSERT INTO passwords (url, email, password) VALUES ( 'google.com' , 'qwert@qwe.com', '123456' )";
+        String query = "INSERT INTO passwords (url, email, password) VALUES ( 'url' , 'email' , 'password' )";
+//        String query = "INSERT INTO passwords (url, email, password) VALUES ( '"+password.getUrl()+"' , '"+password.getEmail()+"' , '"+password.getPassword()+"' )";
 
         statement = connection.createStatement();
         statement.executeUpdate(query);
@@ -38,7 +39,7 @@ public class PasswordsController {
         while (resultSet.next()) {
             String url = resultSet.getString("url");
             String email = resultSet.getString("email");
-            String password = resultSet.getString("url");
+            String password = resultSet.getString("password");
 
             Password currentPassword = new Password(url, email, password);
             allPasswords.add(currentPassword);

@@ -18,7 +18,7 @@ public class MainView {
     public MainView(){
 
         ArrayList<Password> allPassword = new ArrayList<>();
-        allPassword.add(new Password("46", "354" , "5555"));
+        allPassword.add(new Password("", "" , ""));
 
         PasswordTableModel passwordTableModel = new PasswordTableModel(allPassword);
         tablePasswords.setModel(passwordTableModel);

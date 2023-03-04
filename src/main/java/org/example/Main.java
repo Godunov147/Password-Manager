@@ -5,8 +5,9 @@ import javax.swing.*;
 public class Main {
 
     static JFrame mainFrame;
-
     static  JFrame addEditPassword;
+    static JFrame changePassword;
+    static  JFrame deletePassword;
 
     public static void main(String[] args) {
         startMainView();
@@ -29,19 +30,19 @@ public class Main {
         addEditPassword.setVisible(true);
     }
     public static void startChangePassword() {
-        addEditPassword = new JFrame("Изменить пароль");
-        addEditPassword.setContentPane(new ChangePassword().changePasswordPanel);
-        addEditPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        addEditPassword.setSize(640, 480);
-        addEditPassword.setLocationRelativeTo(null);
-        addEditPassword.setVisible(true);
+        changePassword = new JFrame("Изменить пароль");
+        changePassword.setContentPane(new ChangePassword().changePasswordPanel);
+        changePassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        changePassword.setSize(640, 480);
+        changePassword.setLocationRelativeTo(null);
+        changePassword.setVisible(true);
     }
     public static void startDeletePassword() {
-        addEditPassword = new JFrame("Удалить пароль");
-        addEditPassword.setContentPane(new DeletePassword().deletePasswordPanel);
-        addEditPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        addEditPassword.setSize(640, 480);
-        addEditPassword.setLocationRelativeTo(null);
-        addEditPassword.setVisible(true);
+        deletePassword = new JFrame("Удалить пароль");
+        deletePassword.setContentPane(new DeletePassword().deletePasswordPanel);
+        deletePassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        deletePassword.setSize(640, 480);
+        deletePassword.setLocationRelativeTo(null);
+        deletePassword.setVisible(true);
     }
 }
