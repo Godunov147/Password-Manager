@@ -20,6 +20,9 @@ public class Main {
         mainFrame.setSize(1280, 720);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
+
+
+
     }
     public static void startEditPassword(){
         addEditPassword = new JFrame("Создать пароль");
