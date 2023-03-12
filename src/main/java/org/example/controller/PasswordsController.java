@@ -23,8 +23,9 @@ public class PasswordsController {
     }
 
     public void savePassword(Password password) throws SQLException {
-        String query = "INSERT INTO passwords (url, email, password) VALUES ( 'url' , 'email' , 'password' )";
-//        String query = "INSERT INTO passwords (url, email, password) VALUES ( '"+password.getUrl()+"' , '"+password.getEmail()+"' , '"+password.getPassword()+"' )";
+        String url = password.getUrl();
+
+        String query = "INSERT INTO passwords (url, email, password) VALUES ( '" + url + "' , 'email' , 'password' )";
 
         statement = connection.createStatement();
         statement.executeUpdate(query);

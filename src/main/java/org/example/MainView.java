@@ -24,13 +24,12 @@ public class MainView {
         tablePasswords.setModel(passwordTableModel);
 
         addButton.addActionListener(e -> {
-            Main.startEditPassword();
-            PasswordsController passwordsController = new PasswordsController();
             try {
-                passwordsController.savePassword(null);
+                Main.startEditPassword();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
+
         });
         editButton.addActionListener(e -> {
             Main.startChangePassword();

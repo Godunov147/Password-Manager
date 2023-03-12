@@ -1,6 +1,7 @@
 package org.example;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class Main {
 
@@ -21,7 +22,7 @@ public class Main {
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
     }
-    public static void startEditPassword(){
+    public static void startEditPassword() throws SQLException {
         addEditPassword = new JFrame("Создать пароль");
         addEditPassword.setContentPane(new AddEditPassword().addEditPanel);
         addEditPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
