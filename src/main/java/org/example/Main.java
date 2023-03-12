@@ -1,6 +1,7 @@
 package org.example;
 
 import javax.swing.*;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
 public class Main {
@@ -46,4 +47,9 @@ public class Main {
         deletePassword.setLocationRelativeTo(null);
         deletePassword.setVisible(true);
     }
+
+    public static void closeAddEditPassword() {
+        addEditPassword.dispatchEvent(new WindowEvent(addEditPassword, WindowEvent.WINDOW_CLOSING));
+    }
+
 }

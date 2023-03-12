@@ -7,6 +7,7 @@ import org.example.model.PasswordTableModel;
 import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainView {
     public JPanel mainPanel;
@@ -17,8 +18,14 @@ public class MainView {
 
     public MainView(){
 
-        ArrayList<Password> allPassword = new ArrayList<>();
-        allPassword.add(new Password("", "" , ""));
+        List<Password> allPassword;
+        PasswordsController passwordsController = new PasswordsController();
+
+        try {
+            allPassword = passwordsController.getAllPasswords();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         PasswordTableModel passwordTableModel = new PasswordTableModel(allPassword);
         tablePasswords.setModel(passwordTableModel);
@@ -29,20 +36,19 @@ public class MainView {
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-
         });
+
         editButton.addActionListener(e -> {
             Main.startChangePassword();
-            PasswordsController passwordsController = new PasswordsController();
             try {
                 passwordsController.savePassword(null);
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
         });
+
         deleteButton.addActionListener(e -> {
             Main.startDeletePassword();
-            PasswordsController passwordsController = new PasswordsController();
             try {
                 passwordsController.savePassword(null);
             } catch (SQLException ex) {

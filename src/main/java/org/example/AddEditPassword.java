@@ -28,6 +28,8 @@ public class AddEditPassword {
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
+
+            Main.closeAddEditPassword();
         });
 
 

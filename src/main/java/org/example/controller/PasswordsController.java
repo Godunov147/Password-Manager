@@ -34,7 +34,8 @@ public class PasswordsController {
     public List<Password> getAllPasswords() throws SQLException {
         List<Password> allPasswords = new ArrayList<>();
 
-        String query = "SELECT (url, email, password) FROM passwords";
+        String query = "SELECT * FROM passwords";
+        statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
 
         while (resultSet.next()) {
