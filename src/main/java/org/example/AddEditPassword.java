@@ -30,6 +30,7 @@ public class AddEditPassword {
             }
 
             Main.closeAddEditPassword();
+            Main.startMainView();
         });
 
 

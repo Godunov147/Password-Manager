@@ -16,23 +16,24 @@ public class MainView {
     private JButton editButton;
     private JButton deleteButton;
 
+
+    List<Password> allPassword;
+    PasswordTableModel passwordTableModel;
+    PasswordsController passwordsController = new PasswordsController();
     public MainView(){
-
-        List<Password> allPassword;
-        PasswordsController passwordsController = new PasswordsController();
-
         try {
             allPassword = passwordsController.getAllPasswords();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        PasswordTableModel passwordTableModel = new PasswordTableModel(allPassword);
+        passwordTableModel = new PasswordTableModel(allPassword);
         tablePasswords.setModel(passwordTableModel);
 
         addButton.addActionListener(e -> {
             try {
                 Main.startEditPassword();
+                Main.closeMainView();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
@@ -57,4 +58,6 @@ public class MainView {
         });
 
     }
+
+
 }

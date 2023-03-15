@@ -1,5 +1,7 @@
 package org.example;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+
 import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
@@ -12,6 +14,7 @@ public class Main {
     static  JFrame deletePassword;
 
     public static void main(String[] args) {
+        FlatDarkLaf.setup();
         startMainView();
 
     }
@@ -50,6 +53,11 @@ public class Main {
 
     public static void closeAddEditPassword() {
         addEditPassword.dispatchEvent(new WindowEvent(addEditPassword, WindowEvent.WINDOW_CLOSING));
+    }
+
+    public static void closeMainView() {
+        mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
+
     }
 
 }
