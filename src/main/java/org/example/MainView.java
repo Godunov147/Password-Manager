@@ -48,14 +48,7 @@ public class MainView {
             }
         });
 
-        deleteButton.addActionListener(e -> {
-            Main.startDeletePassword();
-            try {
-                passwordsController.savePassword(null);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+
 
     }
 

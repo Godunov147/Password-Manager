@@ -33,10 +33,10 @@ public class PasswordTableModel implements TableModel {
             column = "URL";
         }
         if (columnIndex == 1){
-            column = "Пароль";
+            column = "E-mail";
         }
         if (columnIndex == 2){
-            column = "E-mail";
+            column = "Пароль";
         }
         return column;
 
@@ -59,10 +59,10 @@ public class PasswordTableModel implements TableModel {
         if (columnIndex == 0){
             column = password.getUrl();
         }
-        if (columnIndex == 1){
+        if (columnIndex == 2){
             column = password.getPassword();
         }
-        if (columnIndex == 2){
+        if (columnIndex == 1){
             column = password.getEmail();
         }
         return column;

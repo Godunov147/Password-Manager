@@ -42,14 +42,7 @@ public class Main {
         changePassword.setLocationRelativeTo(null);
         changePassword.setVisible(true);
     }
-    public static void startDeletePassword() {
-        deletePassword = new JFrame("Удалить пароль");
-        deletePassword.setContentPane(new DeletePassword().deletePasswordPanel);
-        deletePassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        deletePassword.setSize(640, 480);
-        deletePassword.setLocationRelativeTo(null);
-        deletePassword.setVisible(true);
-    }
+
 
     public static void closeAddEditPassword() {
         addEditPassword.dispatchEvent(new WindowEvent(addEditPassword, WindowEvent.WINDOW_CLOSING));

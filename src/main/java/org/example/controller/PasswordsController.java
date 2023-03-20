@@ -22,10 +22,12 @@ public class PasswordsController {
         }
     }
 
-    public void savePassword(Password password) throws SQLException {
-        String url = password.getUrl();
+    public void savePassword(Password passwordSave) throws SQLException {
+        String url = passwordSave.getUrl();
+        String email = passwordSave.getEmail();
+        String password = passwordSave.getPassword();
 
-        String query = "INSERT INTO passwords (url, email, password) VALUES ( '" + url + "' , 'email' , 'password' )";
+        String query = "INSERT INTO passwords (url, email, password) VALUES ( '" + url + "' , '" + email + "' , '" + password + "' )";
 
         statement = connection.createStatement();
         statement.executeUpdate(query);
