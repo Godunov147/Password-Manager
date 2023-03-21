@@ -1,6 +1,7 @@
 package org.example;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import org.example.model.Password;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;
@@ -26,23 +27,14 @@ public class Main {
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
     }
-    public static void startEditPassword() throws SQLException {
+    public static void startEditPassword(Password password) throws SQLException {
         addEditPassword = new JFrame("Создать пароль");
-        addEditPassword.setContentPane(new AddEditPassword().addEditPanel);
+        addEditPassword.setContentPane(new AddEditPassword(password).addEditPanel);
         addEditPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         addEditPassword.setSize(640, 480);
         addEditPassword.setLocationRelativeTo(null);
         addEditPassword.setVisible(true);
     }
-    public static void startChangePassword() {
-        changePassword = new JFrame("Изменить пароль");
-        changePassword.setContentPane(new ChangePassword().changePasswordPanel);
-        changePassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        changePassword.setSize(640, 480);
-        changePassword.setLocationRelativeTo(null);
-        changePassword.setVisible(true);
-    }
-
 
     public static void closeAddEditPassword() {
         addEditPassword.dispatchEvent(new WindowEvent(addEditPassword, WindowEvent.WINDOW_CLOSING));

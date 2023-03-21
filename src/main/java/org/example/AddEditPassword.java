@@ -15,18 +15,21 @@ public class AddEditPassword {
     private JButton addButton;
     public JPanel addEditPanel;
 
-    public AddEditPassword() {
-
+    public AddEditPassword(Password password) {
         PasswordsController passwordsController = new PasswordsController();
 
         addButton.addActionListener(e -> {
-
             String url = urlField.getText();
             String email = emailField.getText();
-            String password = passwordField.getText();
+            String passwordText = passwordField.getText();
+
+            if(textCheck.isEmptyField(url) || textCheck.isEmptyField(email) || textCheck.isEmptyField(passwordText)) {
+                showErrorMessage("Это поле не может быть пустым", "Ошибка");
+                return;
+            }
 
             try {
-                passwordsController.savePassword(new Password(url, email, password));
+                passwordsController.savePassword(new Password(url, email, passwordText));
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
@@ -35,20 +38,14 @@ public class AddEditPassword {
             Main.startMainView();
         });
 
-        addButton.addActionListener(e -> {
-            String secondField = emailField.getText();
-            if (checkField(secondField)) {
-                showErrorMessage("Это поле 'E-mail' не можнт быть пустым.", "Ошибка");
+        if(password == null) {
+            return;
+        }
 
-            }
-        });
-        addButton.addActionListener(e -> {
-            String thirdField = passwordField.getText();
-            if (checkField(thirdField)) {
-                showErrorMessage("Это поле 'Пароль' не можнт быть пустым.", "Ошибка");
+        urlField.setText(password.getUrl());
+        emailField.setText(password.getEmail());
+        passwordField.setText(password.getPassword());
 
-            }
-        });
 
     }
     private void showErrorMessage(String message, String title) {
@@ -57,7 +54,5 @@ public class AddEditPassword {
                 JOptionPane.ERROR_MESSAGE
         );
     }
-    private boolean checkField(String firstField){
-        return textCheck.isEmptyField(firstField);
-    }
+
 }

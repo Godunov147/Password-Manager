@@ -13,45 +13,41 @@ public class MainView {
     public JPanel mainPanel;
     private JTable tablePasswords;
     private JButton addButton;
-    private JButton editButton;
-    private JButton deleteButton;
 
-
-    List<Password> allPassword;
-    PasswordTableModel passwordTableModel;
-    PasswordsController passwordsController = new PasswordsController();
     public MainView(){
+        List<Password> allPassword;
+
         try {
+            PasswordsController passwordsController = new PasswordsController();
             allPassword = passwordsController.getAllPasswords();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        passwordTableModel = new PasswordTableModel(allPassword);
+        PasswordTableModel passwordTableModel = new PasswordTableModel(allPassword);
         tablePasswords.setModel(passwordTableModel);
 
         addButton.addActionListener(e -> {
             try {
-                Main.startEditPassword();
-                Main.closeMainView();
+                Main.startEditPassword(null);
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-        });
 
-        editButton.addActionListener(e -> {
-            Main.startChangePassword();
-            try {
-                passwordsController.savePassword(null);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            Main.closeMainView();
         });
 
         tablePasswords.getSelectionModel().addListSelectionListener(e -> {
             if(!e.getValueIsAdjusting() && tablePasswords.getSelectedRow() != -1){
                 int row = tablePasswords.getSelectedRow();
 
+                Password currentPassword = allPassword.get(row);
+                try {
+                    Main.startEditPassword(currentPassword);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                Main.closeMainView();
 
             }
         });
