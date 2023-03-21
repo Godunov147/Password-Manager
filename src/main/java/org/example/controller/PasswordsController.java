@@ -43,7 +43,7 @@ public class PasswordsController {
         while (resultSet.next()) {
             String url = resultSet.getString("url");
             String email = resultSet.getString("email");
-            String password ="****";
+            String password ="***";
 
             Password currentPassword = new Password(url, email, password);
             allPasswords.add(currentPassword);

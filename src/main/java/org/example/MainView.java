@@ -48,6 +48,14 @@ public class MainView {
             }
         });
 
+        tablePasswords.getSelectionModel().addListSelectionListener(e -> {
+            if(!e.getValueIsAdjusting() && tablePasswords.getSelectedRow() != -1){
+                int row = tablePasswords.getSelectedRow();
+
+
+            }
+        });
+
 
 
     }
