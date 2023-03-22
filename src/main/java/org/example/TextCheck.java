@@ -1,7 +1,7 @@
 package org.example;
 
 public class TextCheck {
-    public boolean isEmptyField(String text) {
+    public static boolean isEmptyField(String text) {
         return text.isEmpty();
     }
 }

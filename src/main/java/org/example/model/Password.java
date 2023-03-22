@@ -1,6 +1,8 @@
 package org.example.model;
 
 public class Password {
+    int id;
+
     String url;
 
     String email;
@@ -13,6 +15,13 @@ public class Password {
         this.password = password;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
     public String getUrl() {
         return url;
     }

@@ -33,6 +33,14 @@ public class PasswordsController {
         statement.executeUpdate(query);
     }
 
+    public void deletePassword(int id) throws SQLException {
+
+        String query = "DELETE FROM passwords WHERE id = " + id;
+
+        statement = connection.createStatement();
+        statement.execute(query);
+    }
+
     public List<Password> getAllPasswords() throws SQLException {
         List<Password> allPasswords = new ArrayList<>();
 
@@ -43,7 +51,7 @@ public class PasswordsController {
         while (resultSet.next()) {
             String url = resultSet.getString("url");
             String email = resultSet.getString("email");
-            String password ="***";
+            String password = resultSet.getString("password");
 
             Password currentPassword = new Password(url, email, password);
             allPasswords.add(currentPassword);

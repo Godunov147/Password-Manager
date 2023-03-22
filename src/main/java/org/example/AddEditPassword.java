@@ -9,8 +9,6 @@ import java.sql.SQLException;
 public class AddEditPassword {
     private JTextField urlField;
     private JTextField emailField;
-
-    private final TextCheck textCheck = new TextCheck();
     private JTextField passwordField;
     private JButton addButton;
     public JPanel addEditPanel;
@@ -23,7 +21,9 @@ public class AddEditPassword {
             String email = emailField.getText();
             String passwordText = passwordField.getText();
 
-            if(textCheck.isEmptyField(url) || textCheck.isEmptyField(email) || textCheck.isEmptyField(passwordText)) {
+            if (TextCheck.isEmptyField(url) ||
+                    TextCheck.isEmptyField(email) ||
+                    TextCheck.isEmptyField(passwordText)) {
                 showErrorMessage("Это поле не может быть пустым", "Ошибка");
                 return;
             }
@@ -38,7 +38,7 @@ public class AddEditPassword {
             Main.startMainView();
         });
 
-        if(password == null) {
+        if (password == null) {
             return;
         }
 
@@ -48,6 +48,7 @@ public class AddEditPassword {
 
 
     }
+
     private void showErrorMessage(String message, String title) {
         JOptionPane.showMessageDialog(
                 addEditPanel, message, title,

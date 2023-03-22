@@ -16,9 +16,9 @@ public class MainView {
 
     public MainView(){
         List<Password> allPassword;
+        PasswordsController passwordsController = new PasswordsController();
 
         try {
-            PasswordsController passwordsController = new PasswordsController();
             allPassword = passwordsController.getAllPasswords();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -41,6 +41,7 @@ public class MainView {
             if(!e.getValueIsAdjusting() && tablePasswords.getSelectedRow() != -1){
                 int row = tablePasswords.getSelectedRow();
 
+                //todo: add id
                 Password currentPassword = allPassword.get(row);
                 try {
                     Main.startEditPassword(currentPassword);
