@@ -12,9 +12,15 @@ public class AddEditPassword {
     private JTextField passwordField;
     private JButton addButton;
     public JPanel addEditPanel;
+    private JButton goBackButton;
 
     public AddEditPassword(Password password) {
         PasswordsController passwordsController = new PasswordsController();
+
+        goBackButton.addActionListener(e -> {
+            Main.startMainView();
+            Main.closeAddEditPassword();
+        });
 
         addButton.addActionListener(e -> {
             String url = urlField.getText();
@@ -45,6 +51,7 @@ public class AddEditPassword {
         urlField.setText(password.getUrl());
         emailField.setText(password.getEmail());
         passwordField.setText(password.getPassword());
+
 
 
     }

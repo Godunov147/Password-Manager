@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PasswordsController {
+public class PasswordsController implements IPassword{
 
     Connection connection;
 
@@ -22,6 +22,7 @@ public class PasswordsController {
         }
     }
 
+    @Override
     public void savePassword(Password passwordSave) throws SQLException {
         String url = passwordSave.getUrl();
         String email = passwordSave.getEmail();
@@ -41,6 +42,7 @@ public class PasswordsController {
         statement.execute(query);
     }
 
+    @Override
     public List<Password> getAllPasswords() throws SQLException {
         List<Password> allPasswords = new ArrayList<>();
 
