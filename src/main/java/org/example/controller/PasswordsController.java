@@ -3,6 +3,7 @@ package org.example.controller;
 import org.example.model.Password;
 
 import java.sql.*;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class PasswordsController implements IPassword{
         String email = passwordSave.getEmail();
         String password = passwordSave.getPassword();
 
-        String query = "INSERT INTO passwords (url, email, password) VALUES ( '" + url + "' , '" + email + "' , '" + password + "' )";
+        String query = MessageFormat.format("INSERT INTO passwords (url, email, password) VALUES ( ''{0}'' , ''{1}'' , ''{2}'' )", url, email, password);
 
         statement = connection.createStatement();
         statement.executeUpdate(query);
@@ -37,6 +38,15 @@ public class PasswordsController implements IPassword{
     public void deletePassword(int id) throws SQLException {
 
         String query = "DELETE FROM passwords WHERE id = " + id;
+
+        statement = connection.createStatement();
+        statement.execute(query);
+    }
+
+    public void updatePassword(Password password, int id) throws SQLException {
+        String query = "UPDATE passwords SET url = '"+password.getUrl()+"'," +
+                "email = '"+password.getEmail() +"', password = '" + password.getPassword() +"' " +
+                "WHERE id = " + id;
 
         statement = connection.createStatement();
         statement.execute(query);
@@ -51,11 +61,14 @@ public class PasswordsController implements IPassword{
         ResultSet resultSet = statement.executeQuery(query);
 
         while (resultSet.next()) {
+            int id = resultSet.getInt("id");
             String url = resultSet.getString("url");
             String email = resultSet.getString("email");
             String password = resultSet.getString("password");
 
             Password currentPassword = new Password(url, email, password);
+            currentPassword.setId(id);
+
             allPasswords.add(currentPassword);
         }
 

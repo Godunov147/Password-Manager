@@ -10,19 +10,71 @@ public class AddEditPassword {
     private JTextField urlField;
     private JTextField emailField;
     private JTextField passwordField;
-    private JButton addButton;
+    private JButton saveButton;
     public JPanel addEditPanel;
     private JButton goBackButton;
+    private JButton deleteButton;
+
+    private final PasswordsController passwordsController = new PasswordsController();
 
     public AddEditPassword(Password password) {
-        PasswordsController passwordsController = new PasswordsController();
 
         goBackButton.addActionListener(e -> {
             Main.startMainView();
             Main.closeAddEditPassword();
         });
 
-        addButton.addActionListener(e -> {
+        if(password == null) {
+            savePassword();
+            return;
+        }
+
+        updatePassword(password);
+
+    }
+
+    private void updatePassword(Password password) {
+        urlField.setText(password.getUrl());
+        emailField.setText(password.getEmail());
+        passwordField.setText(password.getPassword());
+
+        saveButton.addActionListener(e -> {
+            String url = urlField.getText();
+            String email = emailField.getText();
+            String passwordText = passwordField.getText();
+
+            if (TextCheck.isEmptyField(url) ||
+                    TextCheck.isEmptyField(email) ||
+                    TextCheck.isEmptyField(passwordText)) {
+                showErrorMessage("Это поле не может быть пустым", "Ошибка");
+                return;
+            }
+
+            try {
+                passwordsController.updatePassword(new Password(url, email, passwordText), password.getId());
+
+                Main.closeAddEditPassword();
+                Main.startMainView();
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+
+        deleteButton.addActionListener(e -> {
+            try {
+                passwordsController.deletePassword(password.getId());
+                Main.closeAddEditPassword();
+                Main.startMainView();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+    }
+
+    private void savePassword() {
+        deleteButton.setVisible(false);
+
+        saveButton.addActionListener(e -> {
             String url = urlField.getText();
             String email = emailField.getText();
             String passwordText = passwordField.getText();
@@ -43,17 +95,6 @@ public class AddEditPassword {
             Main.closeAddEditPassword();
             Main.startMainView();
         });
-
-        if (password == null) {
-            return;
-        }
-
-        urlField.setText(password.getUrl());
-        emailField.setText(password.getEmail());
-        passwordField.setText(password.getPassword());
-
-
-
     }
 
     private void showErrorMessage(String message, String title) {

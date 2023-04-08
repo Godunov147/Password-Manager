@@ -27,7 +27,7 @@ public class Main {
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
     }
-    public static void startEditPassword(Password password) throws SQLException {
+    public static void startEditPassword(Password password) {
         addEditPassword = new JFrame("Создать пароль");
         addEditPassword.setContentPane(new AddEditPassword(password).addEditPanel);
         addEditPassword.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

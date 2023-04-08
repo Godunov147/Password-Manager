@@ -14,7 +14,7 @@ public class MainView {
     private JTable tablePasswords;
     private JButton addButton;
 
-    public MainView(){
+    public MainView() {
         List<Password> allPassword;
         PasswordsController passwordsController = new PasswordsController();
 
@@ -27,32 +27,25 @@ public class MainView {
         PasswordTableModel passwordTableModel = new PasswordTableModel(allPassword);
         tablePasswords.setModel(passwordTableModel);
 
-        addButton.addActionListener(e -> {
-            try {
-                Main.startEditPassword(null);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-
-            Main.closeMainView();
-        });
-
         tablePasswords.getSelectionModel().addListSelectionListener(e -> {
-            if(!e.getValueIsAdjusting() && tablePasswords.getSelectedRow() != -1){
+            if (!e.getValueIsAdjusting() && tablePasswords.getSelectedRow() != -1) {
                 int row = tablePasswords.getSelectedRow();
 
-                //todo: add id
                 Password currentPassword = allPassword.get(row);
-                try {
-                    Main.startEditPassword(currentPassword);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+                Main.startEditPassword(currentPassword);
+
                 Main.closeMainView();
 
             }
         });
 
+        addButton.addActionListener(e -> {
+
+            Main.startEditPassword(null);
+            Main.closeMainView();
+
+
+        });
 
 
     }
